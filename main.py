@@ -61,10 +61,10 @@ if __name__ == '__main__':
     print(time.strftime("%H:%M:%S", time.localtime()))
     res = 100000000
     price_list = []
-    origin_lat = 35.7346600
-    origin_long = 51.4302400
-    dest_lat =35.7116000
-    dest_long = 51.4068000
+    origin_lat = 35.7992
+    origin_long =51.4075
+    dest_lat =35.7114
+    dest_long = 51.407
     step = .0005
     res_origin_lat = origin_lat
     res_origin_long = origin_long
