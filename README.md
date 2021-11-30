@@ -14,4 +14,4 @@ origin location 	35.73466,51.43024
 dest location 	35.7116,51.4068
 max price 285000
 ```
-فقط یک نکته! شما باید authorization کد مختص به خودتون رو در قسمت header قرار بدید
+فقط یک نکته! شما باید authorization code  مختص به خودتون رو در قسمت header قرار بدید
