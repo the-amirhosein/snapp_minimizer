@@ -15,15 +15,7 @@ def request(origin_lat, origin_long, dest_lat, dest_long):
             'content-type': 'application/json',
             'x-app-name': 'passenger-pwa',
             'x-app-version': '5.0.1',
-            'authorization': 'Bearer eyJhbGciOiJSUzUxMiIsImtpZCI6Ino4YTRsNG9PRkVxZ2VoUllEQlpQK2ZwclBuTERMbWFia3NsT3hWVnBMTkUiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOl'
-                             'sicGFzc2VuZ2VyIl0sImVtYWlsIjoiOThhbWlyaG9zZWluQGdtYWlsLmNvbSIsImV4cCI6MTYzOTQ2NTY1MywiaWF0IjoxNjM4MjU2MDUzLCJpc3MiOjEsImp0aSI'
-                             '6Ik1HNGVURkdzRWV5bStnSUFyQlFBendtSXJ1V2UzVVpBcmdMNzdqUFk5R28iLCJzaWQiOiIyMWQxR1F6blFwYnlDU1JhQTRSNUIzRmNNSloiLCJzdWIiOiJXejFB'
-                             'NVZFOGJWamd5NG8ifQ.KNdiK2WHcxEAbYSdG2XCyMVUpUW94T2z5iayEbPEj31Sr84IdpGa8jxPY1BNKpw8ay-GQYI7f5JT4pusf7wkGhZ-IHyatj1aahLs6zfbe8'
-                             'cCDYXwDQju8aTLGb8ZEdJSiyJrgqh9iyM3e4Ut1sKYlrGX5dBEJUTMLXvtXZWGuZF-YIcbHpTuIjclbfVvdkFyvkMccCNcvghVxZDZPFbQxoofbaMDUhH_9cSwfls'
-                             'JB7QRzOJcE78ocMY-SVobgdmpDisxZ_1DyfAtH1-DPcHUK62jGvCPh8eR2Wu_lRz5C2EGR_vUjd_SreOwVL2qsETz7cmRwQYX4_WxS-nG26FWoAsthXmvCLp_bUve'
-                             'KnwjuVqdLD7LyEjR79IVc05N7qWmvg_oosulJ_J1Udu3mYd3gsk_NpayYl_fIGHuPw5aStHiSxnuqrF133_-9YKN6o7eiV0OzRXqLuEPk0N53GP6cJJoo2v7ONtt9'
-                             'BC-utrhUuDmxYlPBfZZeC8ahHp7u6xsE122S7o76_00SSWSkLj_oNmkvQqwImM0JRRVoUUFHjLRJyeWj4NueHdh_OB8AJusBkdjEhZ92MEj139R92fQHFPPLj1MPO'
-                             '94NIUdc5Vhxk0IsPBmdt2FekCreh2SvPhxso23ZlsQ6IKsds2BZYwf37tGpuiBjuB9bzPEbQHYZ0Y',
+            'authorization': 'ENTER YOUR AUTH KEY',
             'locale': 'fa-IR',
             'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Mobile Safari/537.36',
             'app-version': 'pwa',
@@ -71,7 +63,7 @@ if __name__ == '__main__':
     price_list = []
     origin_lat = 35.7346600
     origin_long = 51.4302400
-    dest_lat = 35.7116000
+    dest_lat =35.7116000
     dest_long = 51.4068000
     step = .0005
     res_origin_lat = origin_lat
@@ -83,18 +75,19 @@ if __name__ == '__main__':
         for b in range(-500, 500, 50):
             lat = origin_lat + round(a * .00001, 4)
             long = origin_long + round(a * .00001, 4)
-            price = request(lat, long, dest_lat, dest_long)
+            price = request(lat, long, dest_lat , dest_long)
             res = min(price, res)
             if price == res:
                 res_lat = lat
                 res_long = long
             price_list.append(price)
 
+
     for a in range(-500, 500, 100):
         for b in range(-500, 500, 50):
             lat = dest_lat + round(a * .00001, 4)
             long = dest_long + round(a * .00001, 4)
-            price = request(res_origin_lat, res_origin_long, lat, long)
+            price = request(res_origin_lat, res_origin_long, lat , long)
             res = min(price, res)
             if price == res:
                 res_origin_lat = lat
@@ -104,4 +97,4 @@ if __name__ == '__main__':
     print(colored(str(time.strftime("%H:%M:%S", time.localtime())), 'yellow'), colored(res, 'green'))
     print('origin location \t' + str(res_origin_lat) + ',' + str(res_origin_long))
     print('dest location \t' + str(res_dest_lat) + ',' + str(res_dest_long))
-    print('max price\t ' + colored( max(price_list), 'red'))
+    print('max price \t' + colored(max(price_list), 'red'))
