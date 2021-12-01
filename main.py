@@ -40,8 +40,8 @@ def request(origin_lat, origin_long, dest_lat, dest_long):
         data = data["data"]
         service = data['prices']
         m = int(10000000)
-        for serv in service:
-            final = int(serv['final'])
+        for i in range(len(service) - 2):
+            final = int(service[i]['final'])
             m = int(np.min([m, final]))
         return m
         write_in_file(m)
@@ -62,8 +62,8 @@ if __name__ == '__main__':
     res = 100000000
     price_list = []
     origin_lat = 35.7992
-    origin_long =51.4075
-    dest_lat =35.7114
+    origin_long = 51.4075
+    dest_lat = 35.7114
     dest_long = 51.407
 
     step = 100
@@ -78,7 +78,7 @@ if __name__ == '__main__':
         for b in range(-radius, radius, step):
             lat = origin_lat + round(a * .00001, 4)
             long = origin_long + round(a * .00001, 4)
-            price = request(lat, long, dest_lat , dest_long)
+            price = request(lat, long, dest_lat, dest_long)
             res = min(price, res)
             if price == res:
                 res_lat = lat
@@ -89,7 +89,7 @@ if __name__ == '__main__':
         for b in range(-radius, radius, step):
             lat = dest_lat + round(a * .00001, 4)
             long = dest_long + round(a * .00001, 4)
-            price = request(res_origin_lat, res_origin_long, lat , long)
+            price = request(res_origin_lat, res_origin_long, lat, long)
             res = min(price, res)
             if price == res:
                 res_dest_lat = lat
