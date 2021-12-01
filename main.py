@@ -39,11 +39,11 @@ def request(origin_lat, origin_long, dest_lat, dest_long):
         data = json.loads(response.content)
         data = data["data"]
         service = data['prices']
-        m = int(10000000000000)
+        m = int(10000000)
         for serv in service:
             final = int(serv['final'])
             m = int(np.min([m, final]))
-            return m
+        return m
         write_in_file(m)
     except:
         print(colored('something wrong', 'red'))
@@ -90,8 +90,8 @@ if __name__ == '__main__':
             price = request(res_origin_lat, res_origin_long, lat , long)
             res = min(price, res)
             if price == res:
-                res_origin_lat = lat
-                res_origin_long = long
+                res_dest_lat = lat
+                res_dest_long = long
             price_list.append(price)
 
     print(colored(str(time.strftime("%H:%M:%S", time.localtime())), 'yellow'), colored(res, 'green'))
