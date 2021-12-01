@@ -65,14 +65,17 @@ if __name__ == '__main__':
     origin_long =51.4075
     dest_lat =35.7114
     dest_long = 51.407
+
     step = 100
+    radius = 500
+
     res_origin_lat = origin_lat
     res_origin_long = origin_long
     res_dest_long = dest_long
     res_dest_lat = dest_lat
 
-    for a in range(-500, 500, step):
-        for b in range(-500, 500, step):
+    for a in range(-radius, radius, step):
+        for b in range(-radius, radius, step):
             lat = origin_lat + round(a * .00001, 4)
             long = origin_long + round(a * .00001, 4)
             price = request(lat, long, dest_lat , dest_long)
@@ -82,9 +85,8 @@ if __name__ == '__main__':
                 res_long = long
             price_list.append(price)
 
-
-    for a in range(-500, 500, step):
-        for b in range(-500, 500, step):
+    for a in range(-radius, radius, step):
+        for b in range(-radius, radius, step):
             lat = dest_lat + round(a * .00001, 4)
             long = dest_long + round(a * .00001, 4)
             price = request(res_origin_lat, res_origin_long, lat , long)
