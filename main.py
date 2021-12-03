@@ -35,6 +35,8 @@ def request(origin_lat, origin_long, dest_lat, dest_long):
 
         response = requests.post('https://app.snapp.taxi/api/api-base/v2/passenger/price/s/6/0', headers=headers,
                                  data=data)
+        if response.status_code != 200:
+            raise ValueError(response.content)
 
         data = json.loads(response.content)
         data = data["data"]
@@ -45,9 +47,10 @@ def request(origin_lat, origin_long, dest_lat, dest_long):
             m = int(np.min([m, final]))
         return m
         write_in_file(m)
-    except:
-        print(colored('something wrong', 'red'))
+    except Exception as e:
+        print(colored(e, 'red'))
         write_in_file('something wrong')
+        return 0
 
 
 def write_in_file(price):
