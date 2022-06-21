@@ -46,7 +46,7 @@ def request(origin_lat, origin_long, dest_lat, dest_long):
             final = int(service[i]['final'])
             m = int(np.min([m, final]))
         return m
-        write_in_file(m)
+        
     except Exception as e:
         print(colored(e, 'red'))
         write_in_file('something wrong')
@@ -103,3 +103,4 @@ if __name__ == '__main__':
     print('origin location \t' + str(res_origin_lat) + ',' + str(res_origin_long))
     print('dest location \t' + str(res_dest_lat) + ',' + str(res_dest_long))
     print('max price \t' + colored(max(price_list), 'red'))
+    write_in_file(res)
